@@ -15,7 +15,11 @@ struct Post: Identifiable, Decodable {
     let timestamp: Timestamp        // story timestamp
     let uid: String                 // User Id
     let likes: Int                  // post likes
+    let saves: Int                  // Saves count
     var imageUrl: String?           // the image URL
     var user: User?                 // User
+    
     var didLike: Bool? = false
+    var didSave: Bool? = false
+    
 }

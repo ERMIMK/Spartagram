@@ -10,6 +10,7 @@ struct StoriesService {
         let data = ["uid": uid,
                     "caption": caption,
                     "likes": 0,
+                    "saves": 0,
                     "timestamp": Timestamp(date: Date())] as [String: Any]
 
         Firestore.firestore().collection("posts").document()
@@ -31,6 +32,7 @@ struct StoriesService {
             "uid": uid,
             "caption": caption,
             "likes": 0,
+            "saves": 0,
             "timestamp": Timestamp(date: Date())
         ]
 
@@ -139,4 +141,92 @@ struct StoriesService {
                 }
             }
     }
+    
+    // Save Story
+    func SavePost(_ post: Post, completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid, let postId = post.id else { return }
+        
+        let userLikeRef = Firestore.firestore().collection("users").document(uid).collection("user-save")
+        
+        Firestore.firestore().collection("posts").document(postId)
+            .updateData(["saves": post.saves + 1]) { _ in
+                userLikeRef.document(postId).setData([:]) { _ in
+                    completion()
+                }
+            }
+    }
+    
+    //unSave Story
+    func unSaveStory(_ post: Post, completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid, let postId = post.id, post.saves > 0 else { return }
+
+        let userLikeRef = Firestore.firestore().collection("users").document(uid).collection("user-save")
+
+        Firestore.firestore().collection("posts").document(postId)
+            .updateData(["saves": post.saves - 1]) { _ in
+                userLikeRef.document(postId).delete { _ in
+                    completion()
+                }
+            }
+    }
+    
+    // Save: check If User Saved Post
+    func checkIfUserSavedPost(_ post: Post, completion: @escaping (Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid, let postId = post.id else { return }
+
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("user-save")
+            .document(postId).getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                completion(snapshot.exists)
+            }
+    }
+    
+    // fetchSavedPosts
+    func fetchSavedPosts(forUid uid: String, completion: @escaping ([Post]) -> Void) {
+        var posts = [Post]()
+
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("user-save")
+            .getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+
+                documents.forEach { doc in
+                    let postId = doc.documentID
+
+                    Firestore.firestore().collection("posts")
+                        .document(postId)
+                        .getDocument { snapshot, _ in
+                            guard let post = try? snapshot?.data(as: Post.self) else { return }
+                            posts.append(post)
+
+                            // Ensure the completion handler is called once all posts are fetched.
+                            if posts.count == documents.count {
+                                completion(posts)
+                            }
+                        }
+                }
+            }
+    }
+    
+    // Delete Story 
+    func deleteStory(_ post: Post, completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid, let postId = post.id else { return }
+        
+        Firestore.firestore().collection("posts").document(postId)
+            .delete() { error in
+                if let error = error {
+                    print("DEBUG: Failed to delete story \(error.localizedDescription)")
+                    completion()
+                    return
+                }
+                completion()
+            }
+       
+    }
+    
+
+    
 }

@@ -52,6 +52,12 @@ struct SideMenuView: View {
             NavigationLink(destination: SettingsView( viewModel: ProfileViewModel(user: user))) {
                 SideMenuOptionRowView(viewModel: viewModel)
             }
+            
+        case .bookmarks:
+            NavigationLink(destination: SavedStoriesRowView(viewModel:fetchedUserSavedPosts(user: user))) {
+                SideMenuOptionRowView(viewModel: viewModel)
+            }
+            
         case .logout:
             Button(action: {
                 authViewModel.signOut()

@@ -7,15 +7,20 @@
 
 import SwiftUI
 import Kingfisher
+import UIKit
 
 
 struct StoriesRowView: View {
     
     @ObservedObject var viewModel: StoryRowViewModel
     @State private var postSettingShowAction = false
+    @State private var showingDeletionAlert = false
     
-    init(post: Post) {
+    var onChange: () -> Void
+    
+    init(post: Post, onChange: @escaping () -> Void = {}) {
         self.viewModel = StoryRowViewModel(post: post)
+        self.onChange = onChange
 
         }
     var body: some View {
@@ -31,6 +36,7 @@ struct StoriesRowView: View {
                         .clipShape(Circle())
                         .frame(width: 56, height: 56)
                         .foregroundColor(Color(.black))
+                    
                     // user info and story caption
                     VStack(alignment: .leading, spacing: 4) {
                         
@@ -47,7 +53,7 @@ struct StoriesRowView: View {
                             Spacer()
                             
                             let date = viewModel.post.timestamp.dateValue()
-                            Text(timeElapsedSinceDate(date))
+                            Text(viewModel.timeElapsedSinceDate(date))
                                 .foregroundColor(.gray)
                                 .font(.caption)
                         }
@@ -84,6 +90,9 @@ struct StoriesRowView: View {
                 Spacer()
                 //like
                 Button {
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred()
+                    
                     viewModel.post.didLike ?? false ?
                     viewModel.unlikeStory() :
                     viewModel.likeStory()
@@ -108,11 +117,16 @@ struct StoriesRowView: View {
                 
                 //save
                 Button {
-                    //action here
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred()
+                    
+                    viewModel.post.didSave ?? false ?
+                    viewModel.unSavePost() :
+                    viewModel.SavePost()
                 } label: {
-                    Image(systemName: "bookmark")
+                    Image(systemName: viewModel.post.didSave ?? false ? "bookmark.fill" : "bookmark")
                         .font(.subheadline)
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(viewModel.post.didSave ?? false ? Color.green : Color.primary)
                 }
                 
                 Spacer()
@@ -130,7 +144,10 @@ struct StoriesRowView: View {
                     ActionSheet(title: Text("Story settings"),
                         buttons: [
                             .default(Text("Delete post")) {
-                                // Code to delete post
+                                viewModel.deleteStory()
+                                showingDeletionAlert = true
+                                onChange()
+                                
                             },
                             .default(Text("Hide post")) {
                                 // Code to hide post
@@ -141,6 +158,16 @@ struct StoriesRowView: View {
                             .cancel()
                         ])
                 }
+                .alert(isPresented: $showingDeletionAlert) {
+                    Alert(
+                        title: Text(showingDeletionAlert ? "Success" : "Error"),
+                        message: Text(showingDeletionAlert ? "The post has been successfully deleted." : "There was an error deleting the post."),
+                        dismissButton: .default(Text("OK")) {
+                            
+                        }
+                    )
+                }
+
 
             
                 Spacer()
@@ -165,30 +192,6 @@ struct StoriesRowView: View {
 
 }
 
-
-
-
-func timeElapsedSinceDate(_ date: Date) -> String {
-    let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date, to: Date())
-    
-    if let year = interval.year, year > 0 {
-        return year == 1 ? "\(year) y" : "\(year) y"
-    } else if let month = interval.month, month > 0 {
-        return month == 1 ? "\(month) m" : "\(month) m"
-    } else if let day = interval.day, day > 0 {
-        return day == 1 ? "\(day) d" : "\(day) d"
-    } else if let hour = interval.hour, hour > 0 {
-        return hour == 1 ? "\(hour) hr ago" : "\(hour) hr ago"
-    } else if let minute = interval.minute, minute > 0 {
-        return minute == 1 ? "\(minute) min ago" : "\(minute) min ago"
-    } else if let second = interval.second, second > 30 {
-        return "\(second) seconds ago"
-    } else {
-        return "Just now"
-    }
-}
-
-
 // UI Color : Hex
 extension UIColor {
     convenience init?(hex: String) {
@@ -206,7 +209,6 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
-
 
 // Color : Hex
 extension Color {
@@ -234,7 +236,6 @@ extension Color {
         )
     }
 }
-
 
 
 //#Preview {

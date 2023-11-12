@@ -17,6 +17,7 @@ class PasswordResetViewModel: ObservableObject {
     @Published var alertMessage = ""
     @Published var showAlert = false
     
+    // Send reset email to user
     func sendPasswordReset(email: String) {
         if !email.isEmpty {
             Auth.auth().sendPasswordReset(withEmail: email) { error in

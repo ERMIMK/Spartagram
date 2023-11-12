@@ -92,15 +92,15 @@ extension ProfileView {
                     .clipShape(Circle())
                     .frame(width: 90, height: 90)
                     .offset(x:16, y:24)
-        
-    
+                
+                
             }
             .sheet(isPresented: $showingEditProfile) {
-                        // Use the existing authViewModel instance
-                    EditProfileView()
-                        .environmentObject(authViewModel)
+                // Use the existing authViewModel instance
+                EditProfileView()
+                    .environmentObject(authViewModel)
             }
-
+            
         }
         .frame(height: 100)
         .navigationBarBackButtonHidden(true)
@@ -118,7 +118,7 @@ extension ProfileView {
                 if viewModel.user.isCurrentUser {
                     showingEditProfile.toggle()
                 } else {
-                            // Follow/Unfollow action
+                    // Follow/Unfollow action
                 }
             } label: {
                 Text(viewModel.actionButtonTitle)
@@ -126,9 +126,9 @@ extension ProfileView {
                     .foregroundColor(Color.primary)
                     .frame(width:120, height: 32)
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray,lineWidth: 0.75))
-        
+                
             }
-
+            
         }
         .padding(.trailing)
         
@@ -158,8 +158,8 @@ extension ProfileView {
             
             // User Stats View
             UserStatsView()
-            .padding(.vertical)
-
+                .padding(.vertical)
+            
         }
         .padding(.horizontal)
     }
@@ -186,7 +186,7 @@ extension ProfileView {
                             .frame(height:3)
                     }
                     
-
+                    
                 }
                 
                 .onTapGesture {
@@ -205,10 +205,11 @@ extension ProfileView {
             LazyVStack{
                 ForEach(viewModel.posts(forFilter: self.selectedFilter)) { post in
                     StoriesRowView(post: post)
-                
+                    
                 }
             }
         }
     }
+    
 }
 

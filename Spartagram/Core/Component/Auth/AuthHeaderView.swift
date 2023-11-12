@@ -10,11 +10,9 @@ import SwiftUI
 // Header template for the authentiction views
 struct AuthHeaderView: View {
     
-    let title1: String          // prompt title
+    let title1: String          // title
+    
     var body: some View {
-        
-        
-        //Header
         VStack (alignment: .center) {
             HStack { Spacer() }
             Image("Colored_logo")
@@ -23,7 +21,7 @@ struct AuthHeaderView: View {
                 .frame(width: 150, height: 150)
     
             
-            
+            // title
             Text (title1)
                 .font(.title)
                 .fontWeight(.heavy)

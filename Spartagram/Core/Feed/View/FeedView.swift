@@ -19,9 +19,15 @@ struct FeedView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.posts) { post in
-                        StoriesRowView(post: post)
+                        StoriesRowView(post: post, onChange: {
+                            viewModel.fetchStories()
+                        })
                     }
+                    
                 }
+            }
+            .refreshable {
+                viewModel.fetchStories()
             }
             
             Button {
@@ -55,6 +61,5 @@ struct FeedView: View {
 #Preview {
     FeedView()
 }
-
 
 
