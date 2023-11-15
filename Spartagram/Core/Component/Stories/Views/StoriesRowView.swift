@@ -64,14 +64,15 @@ struct StoriesRowView: View {
                             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.primary)
                         
-                        if let imageUrl = viewModel.post.imageUrl, !imageUrl.isEmpty {
-                            KFImage(URL(string: imageUrl))
-                                .resizable()
-                                .scaledToFit()
-                                .cornerRadius(10) // Optional: for rounded corners
-                                .padding(.top, 8) // Space between caption and image
+                        
                         }
                     }
+                if let imageUrl = viewModel.post.imageUrl, !imageUrl.isEmpty {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(10) // Optional: for rounded corners
+                        .padding(.top, 8) // Space between caption and image
                 }
             }
             

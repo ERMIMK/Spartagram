@@ -117,6 +117,7 @@ struct StoriesService {
     // Fetch liked posts for a specific user ID
     func fetchLikedPosts(forUid uid: String, completion: @escaping ([Post]) -> Void) {
         var posts = [Post]()
+        var processedCount = 0
 
         Firestore.firestore().collection("users")
             .document(uid)
@@ -124,23 +125,31 @@ struct StoriesService {
             .getDocuments { snapshot, _ in
                 guard let documents = snapshot?.documents else { return }
 
+                if documents.isEmpty {
+                    completion(posts)
+                }
+
                 documents.forEach { doc in
                     let postId = doc.documentID
 
                     Firestore.firestore().collection("posts")
                         .document(postId)
                         .getDocument { snapshot, _ in
-                            guard let post = try? snapshot?.data(as: Post.self) else { return }
-                            posts.append(post)
+                            processedCount += 1
 
-                            // Ensure the completion handler is called once all posts are fetched.
-                            if posts.count == documents.count {
+                            if let post = try? snapshot?.data(as: Post.self) {
+                                posts.append(post)
+                            }
+
+                            // Call completion if all posts are processed.
+                            if processedCount == documents.count {
                                 completion(posts)
                             }
                         }
                 }
             }
     }
+
     
     // Save Story
     func SavePost(_ post: Post, completion: @escaping () -> Void) {

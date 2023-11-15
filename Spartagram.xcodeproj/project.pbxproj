@@ -54,8 +54,10 @@
 		F1482DBB2AE78A3700A92F0D /* NewStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1482DBA2AE78A3700A92F0D /* NewStoriesView.swift */; };
 		F1482DBD2AE78C1500A92F0D /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1482DBC2AE78C1500A92F0D /* TextArea.swift */; };
 		F14EFE652AEADA2A00B49D4D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EFE642AEADA2A00B49D4D /* SearchBar.swift */; };
+		F17CB5072B047C170001986F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F17CB5062B047C170001986F /* GoogleService-Info.plist */; };
+		F17CB50D2B047F490001986F /* NotificationsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB50C2B047F490001986F /* NotificationsRowView.swift */; };
+		F17CB50F2B0485150001986F /* NotificationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB50E2B0485150001986F /* NotificationRowViewModel.swift */; };
 		F1926DB62AF1BFA9004A0BCE /* StoryImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1926DB52AF1BFA9004A0BCE /* StoryImageUploader.swift */; };
-		F1926DBA2AF1EF12004A0BCE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1926DB92AF1EF12004A0BCE /* GoogleService-Info.plist */; };
 		F199355F2AFF38CF0095053A /* SavedStoriesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F199355E2AFF38CF0095053A /* SavedStoriesRowView.swift */; };
 		F19935632AFF3A210095053A /* fetchedUserSavedPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19935622AFF3A210095053A /* fetchedUserSavedPosts.swift */; };
 		F1A8532B2AE9F92A00C128CD /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = F1A8532A2AE9F92A00C128CD /* CropViewController */; };
@@ -107,9 +109,12 @@
 		F1482DBA2AE78A3700A92F0D /* NewStoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoriesView.swift; sourceTree = "<group>"; };
 		F1482DBC2AE78C1500A92F0D /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		F14EFE642AEADA2A00B49D4D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		F17CB5062B047C170001986F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F17CB5082B047C220001986F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F17CB50C2B047F490001986F /* NotificationsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRowView.swift; sourceTree = "<group>"; };
+		F17CB50E2B0485150001986F /* NotificationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRowViewModel.swift; sourceTree = "<group>"; };
 		F1926DB52AF1BFA9004A0BCE /* StoryImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryImageUploader.swift; sourceTree = "<group>"; };
-		F1926DB82AF1E3FA004A0BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F1926DB92AF1EF12004A0BCE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1926DB82AF1E3FA004A0BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F199355E2AFF38CF0095053A /* SavedStoriesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStoriesRowView.swift; sourceTree = "<group>"; };
 		F19935622AFF3A210095053A /* fetchedUserSavedPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchedUserSavedPosts.swift; sourceTree = "<group>"; };
 		F1A8532E2AE9FCD800C128CD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -276,6 +281,38 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F17CB5022B0479D40001986F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F17CB5092B047EAF0001986F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F17CB50B2B047EEF0001986F /* Views */,
+				F17CB50A2B047EE80001986F /* ViewModel */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		F17CB50A2B047EE80001986F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F17CB50E2B0485150001986F /* NotificationRowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F17CB50B2B047EEF0001986F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F17CB50C2B047F490001986F /* NotificationsRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F1926DB32AF1B6BA004A0BCE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,17 +381,19 @@
 		F1D65E3B2AE5DB82005619AA /* Spartagram */ = {
 			isa = PBXGroup;
 			children = (
-				F1926DB82AF1E3FA004A0BCE /* Info.plist */,
-				F1D65E4D2AE5DBCC005619AA /* Model */,
+				F17CB5022B0479D40001986F /* Application */,
 				F1D65E4C2AE5DBC6005619AA /* Core */,
-				F12FACF92AE8B858007BC654 /* Utills */,
+				F1D65E4D2AE5DBCC005619AA /* Model */,
 				F1D65E4A2AE5DBAC005619AA /* Service */,
+				F12FACF92AE8B858007BC654 /* Utills */,
 				F1D65E4F2AE5DBD7005619AA /* Extenstions */,
-				F1D65E3C2AE5DB82005619AA /* SpartagramApp.swift */,
-				F1D65E3E2AE5DB82005619AA /* ContentView.swift */,
-				F1D65E402AE5DB84005619AA /* Assets.xcassets */,
-				F1926DB92AF1EF12004A0BCE /* GoogleService-Info.plist */,
 				F1D65E422AE5DB84005619AA /* Preview Content */,
+				F1D65E3C2AE5DB82005619AA /* SpartagramApp.swift */,
+				F17CB5062B047C170001986F /* GoogleService-Info.plist */,
+				F1D65E3E2AE5DB82005619AA /* ContentView.swift */,
+				F17CB5082B047C220001986F /* GoogleService-Info.plist */,
+				F1926DB82AF1E3FA004A0BCE /* Info.plist */,
+				F1D65E402AE5DB84005619AA /* Assets.xcassets */,
 			);
 			path = Spartagram;
 			sourceTree = "<group>";
@@ -414,6 +453,7 @@
 		F1D65E502AE5DC15005619AA /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				F17CB5092B047EAF0001986F /* Notifications */,
 				F12FACB92AE85B01007BC654 /* Auth */,
 				F1D65E702AE6216F005619AA /* Users */,
 				F1D65E562AE5DF18005619AA /* Stories */,
@@ -650,8 +690,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1D65E442AE5DB84005619AA /* Preview Assets.xcassets in Resources */,
+				F17CB5072B047C170001986F /* GoogleService-Info.plist in Resources */,
 				F1D65E412AE5DB84005619AA /* Assets.xcassets in Resources */,
-				F1926DBA2AF1EF12004A0BCE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +736,9 @@
 				F10EC1DC2AEF566900038F47 /* PasswordResetView.swift in Sources */,
 				F12FACB42AE836A1007BC654 /* RegistrationView.swift in Sources */,
 				F1A853312AEA005500C128CD /* User.swift in Sources */,
+				F17CB50D2B047F490001986F /* NotificationsRowView.swift in Sources */,
 				F1D65E722AE62190005619AA /* UserRowView.swift in Sources */,
+				F17CB50F2B0485150001986F /* NotificationRowViewModel.swift in Sources */,
 				F12FACF62AE867B4007BC654 /* AuthViewModel.swift in Sources */,
 				F12FACB62AE84C24007BC654 /* RoundedShape.swift in Sources */,
 				F1D65E5B2AE5F104005619AA /* MainTabView.swift in Sources */,

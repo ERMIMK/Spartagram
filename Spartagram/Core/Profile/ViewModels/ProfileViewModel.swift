@@ -61,7 +61,7 @@ class ProfileViewModel: ObservableObject {
             self.likedPosts = posts
             
             for i in 0 ..< posts.count {
-                let uid = posts[i].uid
+                let uid = posts[i].uid 
                 
                 self.userService.fetchUser(withUid: uid) { user in
                     self.likedPosts[i].user = user

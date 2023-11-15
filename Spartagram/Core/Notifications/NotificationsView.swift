@@ -7,15 +7,26 @@
 
 import SwiftUI
 
-
-// Notificatio view
-
 struct NotificationsView: View {
     var body: some View {
-        Text("Notifications View")
+        VStack{
+            Text("Notifications")
+                .font(.headline)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+                .foregroundColor(Color.primary)
+            
+            
+            List {
+                ForEach(0..<7, id: \.self) { _ in
+                    NotificationsRowView(viewModel: NotificationRowViewModel())
+                }
+            }
+            .listStyle(PlainListStyle())
+        }
     }
 }
-
 #Preview {
     NotificationsView()
 }
