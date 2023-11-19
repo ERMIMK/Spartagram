@@ -16,6 +16,7 @@ class ProfileViewModel: ObservableObject {
     
     private let service = StoriesService()
     private let userService = UserService()
+    private let followService = FollowService()
     
     let user: User
     
@@ -53,7 +54,6 @@ class ProfileViewModel: ObservableObject {
         
     }
     
-    
     func fetchUserLikedPosts() {
         
         guard let uid = user.id else {return}
@@ -73,6 +73,15 @@ class ProfileViewModel: ObservableObject {
     func refreshProfileData() {
         fetchUserPosts()
         fetchUserLikedPosts()
+    }
+    
+    // Function for following a user
+    func followUser() {
+        followService.followUser()
+    }
+    
+    func unfollowUser(){
+        followService.unfollowUser()
     }
 }
 

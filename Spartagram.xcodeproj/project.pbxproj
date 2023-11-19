@@ -57,6 +57,10 @@
 		F17CB5072B047C170001986F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F17CB5062B047C170001986F /* GoogleService-Info.plist */; };
 		F17CB50D2B047F490001986F /* NotificationsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB50C2B047F490001986F /* NotificationsRowView.swift */; };
 		F17CB50F2B0485150001986F /* NotificationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB50E2B0485150001986F /* NotificationRowViewModel.swift */; };
+		F191DE952B08097B00809F9A /* FollowFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191DE942B08097B00809F9A /* FollowFilterViewModel.swift */; };
+		F191DE972B080A3000809F9A /* FollowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191DE962B080A3000809F9A /* FollowView.swift */; };
+		F191DE992B080BF100809F9A /* FollowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191DE982B080BF100809F9A /* FollowViewModel.swift */; };
+		F191DE9B2B080ED500809F9A /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191DE9A2B080ED500809F9A /* FollowService.swift */; };
 		F1926DB62AF1BFA9004A0BCE /* StoryImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1926DB52AF1BFA9004A0BCE /* StoryImageUploader.swift */; };
 		F199355F2AFF38CF0095053A /* SavedStoriesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F199355E2AFF38CF0095053A /* SavedStoriesRowView.swift */; };
 		F19935632AFF3A210095053A /* fetchedUserSavedPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19935622AFF3A210095053A /* fetchedUserSavedPosts.swift */; };
@@ -113,6 +117,10 @@
 		F17CB5082B047C220001986F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F17CB50C2B047F490001986F /* NotificationsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRowView.swift; sourceTree = "<group>"; };
 		F17CB50E2B0485150001986F /* NotificationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRowViewModel.swift; sourceTree = "<group>"; };
+		F191DE942B08097B00809F9A /* FollowFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowFilterViewModel.swift; sourceTree = "<group>"; };
+		F191DE962B080A3000809F9A /* FollowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowView.swift; sourceTree = "<group>"; };
+		F191DE982B080BF100809F9A /* FollowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewModel.swift; sourceTree = "<group>"; };
+		F191DE9A2B080ED500809F9A /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		F1926DB52AF1BFA9004A0BCE /* StoryImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryImageUploader.swift; sourceTree = "<group>"; };
 		F1926DB82AF1E3FA004A0BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F199355E2AFF38CF0095053A /* SavedStoriesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStoriesRowView.swift; sourceTree = "<group>"; };
@@ -313,6 +321,32 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F191DE912B0808B200809F9A /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				F191DE922B0808CE00809F9A /* Views */,
+				F191DE932B0808D700809F9A /* ViewModels */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		F191DE922B0808CE00809F9A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F191DE962B080A3000809F9A /* FollowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F191DE932B0808D700809F9A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F191DE942B08097B00809F9A /* FollowFilterViewModel.swift */,
+				F191DE982B080BF100809F9A /* FollowViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F1926DB32AF1B6BA004A0BCE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +446,7 @@
 				F12FACFC2AE8C8D8007BC654 /* ImageUploader.swift */,
 				F1A8532E2AE9FCD800C128CD /* UserService.swift */,
 				F1EC312C2AEAEE2D00742D0C /* StoriesService.swift */,
+				F191DE9A2B080ED500809F9A /* FollowService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -423,6 +458,7 @@
 				F1D65E592AE5F0DB005619AA /* MainTab */,
 				F1D65E502AE5DC15005619AA /* Component */,
 				F1D65E5F2AE5F637005619AA /* Profile */,
+				F191DE912B0808B200809F9A /* Follow */,
 				F1C8AD9D2AF0282300853ABE /* Settings */,
 				F1482DB72AE789BA00A92F0D /* UploadStories */,
 				F1482DAA2AE6A05E00A92F0D /* SideMenu */,
@@ -718,6 +754,7 @@
 				F12FACF82AE8AA83007BC654 /* ProfilePhotoSelectorView.swift in Sources */,
 				F1482DAE2AE6A0E300A92F0D /* SideMenuView.swift in Sources */,
 				F1EC31312AEAF66C00742D0C /* FeedViewModel.swift in Sources */,
+				F191DE9B2B080ED500809F9A /* FollowService.swift in Sources */,
 				F1EC31392AEB400A00742D0C /* StoryRowViewModel.swift in Sources */,
 				F1D65E582AE5DF45005619AA /* StoriesRowView.swift in Sources */,
 				F1DBD6212AEC524500D7402C /* EditProfileView.swift in Sources */,
@@ -727,6 +764,7 @@
 				F1482DBD2AE78C1500A92F0D /* TextArea.swift in Sources */,
 				F1DBD6232AEC6B5400D7402C /* EditProfileViewModel.swift in Sources */,
 				F1482DB62AE74B4A00A92F0D /* SideMenuOptionRowView.swift in Sources */,
+				F191DE972B080A3000809F9A /* FollowView.swift in Sources */,
 				F14EFE652AEADA2A00B49D4D /* SearchBar.swift in Sources */,
 				F10EC1DE2AEF62B800038F47 /* PasswordResetViewModel.swift in Sources */,
 				F199355F2AFF38CF0095053A /* SavedStoriesRowView.swift in Sources */,
@@ -745,7 +783,9 @@
 				F1EC31352AEB381600742D0C /* ProfileViewModel.swift in Sources */,
 				F1482DBB2AE78A3700A92F0D /* NewStoriesView.swift in Sources */,
 				F1D65E632AE5FAA0005619AA /* NotificationsView.swift in Sources */,
+				F191DE992B080BF100809F9A /* FollowViewModel.swift in Sources */,
 				F1926DB62AF1BFA9004A0BCE /* StoryImageUploader.swift in Sources */,
+				F191DE952B08097B00809F9A /* FollowFilterViewModel.swift in Sources */,
 				F1482DB42AE6A55A00A92F0D /* UserStatsView.swift in Sources */,
 				F10EC1DA2AEF478E00038F47 /* SettingsView.swift in Sources */,
 			);

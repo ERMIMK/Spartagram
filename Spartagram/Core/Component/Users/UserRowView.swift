@@ -15,24 +15,11 @@ struct UserRowView: View {
         HStack(spacing:12) {
             
             // profile picture
-            KFImage(URL(string: user.profileImageUrl))
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 55, height: 55)
-            
+            UserProfilePicfture
             
             //user name and name
+            UserProfileName
             
-            VStack (alignment: .leading, spacing:4) {
-                Text(user.username)
-                    .font(.subheadline).bold()
-                    .foregroundColor(Color.primary)
-                    
-                Text(user.fullname)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
             Spacer()
         }
         .padding(.horizontal)
@@ -40,6 +27,28 @@ struct UserRowView: View {
     }
 }
 
-//#Preview {
-//    UserRowView(user: <#T##User#>)
-//}
+
+extension UserRowView {
+    
+    var UserProfilePicfture: some View {
+        KFImage(URL(string: user.profileImageUrl))
+            .resizable()
+            .scaledToFit()
+            .clipShape(Circle())
+            .frame(width: 55, height: 55)
+    }
+    
+    var UserProfileName: some View {
+        
+        VStack (alignment: .leading, spacing:4) {
+            Text(user.username)
+                .font(.subheadline).bold()
+                .foregroundColor(Color.primary)
+                
+            Text(user.fullname)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+    }
+    
+}

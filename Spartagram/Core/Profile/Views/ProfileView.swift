@@ -37,7 +37,7 @@ struct ProfileView: View {
             UserInfoDetails
 
             
-            //Stores Bar
+            //Stories Bar
             StoriesFilterBar
             
             // Posts view and liked posts view
@@ -108,31 +108,7 @@ extension ProfileView {
         
     }
     
-    // Action Buttons
-    var actionButtons:some View {
-        HStack (spacing:12) {
-            
-            
-            //edit profile
-            Button {
-                if viewModel.user.isCurrentUser {
-                    showingEditProfile.toggle()
-                } else {
-                    // Follow/Unfollow action
-                }
-            } label: {
-                Text(viewModel.actionButtonTitle)
-                    .font(.subheadline).bold()
-                    .foregroundColor(Color.primary)
-                    .frame(width:120, height: 32)
-                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray,lineWidth: 0.75))
-                
-            }
-            
-        }
-        .padding(.trailing)
-        
-    }
+    
     
     // User Info Details
     var UserInfoDetails: some View {
@@ -148,7 +124,7 @@ extension ProfileView {
                 .foregroundColor(.gray)
             
             //Bio
-            Text("MSU '25")
+            Text("viewModel.user.bio")
                 .font(.subheadline)
                 .padding(.vertical)
             
@@ -162,6 +138,33 @@ extension ProfileView {
             
         }
         .padding(.horizontal)
+    }
+    
+    // Action Buttons
+    var actionButtons:some View {
+        HStack (spacing:12) {
+            
+            
+            //edit profile
+            Button {
+                if viewModel.user.isCurrentUser {
+                    showingEditProfile.toggle()
+                } else {
+                    viewModel.followUser()
+                    viewModel.unfollowUser()
+                }
+            } label: {
+                Text(viewModel.actionButtonTitle)
+                    .font(.subheadline).bold()
+                    .foregroundColor(Color.primary)
+                    .frame(width:120, height: 32)
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray,lineWidth: 0.75))
+                
+            }
+            
+        }
+        .padding(.trailing)
+        
     }
     
     // Stories Filter Bar
